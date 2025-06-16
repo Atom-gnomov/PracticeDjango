@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tags List with Sidebar</title>
+  <style>
+    /* Layout */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 200px;
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 1em;
+      box-sizing: border-box;
+    }
+    .sidebar h2 {
+      font-size: 1.2em;
+      margin-top: 0;
+    }
+    .sidebar a {
+      display: block;
+      color: #ecf0f1;
+      text-decoration: none;
+      margin: 0.5em 0;
+      padding: 0.4em;
+      border-radius: 4px;
+    }
+    .sidebar a:hover {
+      background: #34495e;
+    }
+    .main {
+      flex: 1;
+      padding: 2em;
+    }
+
+    /* Tags list styling */
+    h1 {
+      text-align: center;
+      margin-top: 0;
+    }
+    a.button {
+      display: inline-block;
+      padding: 0.5em 1em;
+      margin-bottom: 1em;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+    ul.tags {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+    }
+    ul.tags li {
+      background: #eef;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+    .actions a,
+    .actions form button {
+      margin-left: 0.5em;
+      font-size: 0.9em;
+      text-decoration: none;
+      color: #007bff;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .actions a:hover,
+    .actions form button:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="sidebar">
+      <h2>Navigation</h2>
+      <a href="{% url 'practiceDjango:index' %}">Home</a>
+      <a href="{% url 'practiceDjango:tags' %}">Tags</a>
+    </nav>
+
+    <div class="main">
+      <h1>All Tags</h1>
+      <a href="{% url 'practiceDjango:tag_create' %}" class="button">+ Create New Tag</a>
+
+      <ul class="tags">
+        {% for tag in tag_list %}
+          <li>
+            <strong>{{ tag.name }}</strong>
+            <span class="actions">
+              <a href="{% url 'practiceDjango:tag-update' tag.pk %}">Edit</a>
+              <a href="{% url 'practiceDjango:tag-delete' tag.pk %}">Delete</a>
+            </span>
+          </li>
+        {% empty %}
+          <li>No tags found.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

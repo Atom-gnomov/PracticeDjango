@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Delete Tag</title></head>
+<body>
+  <h1>Delete Tag</h1>
+  <p>Are you sure you want to delete tag “{{ object.name }}”?</p>
+  <form method="post">{% csrf_token %}
+    <button type="submit">Yes, delete</button>
+    <a href="{% url 'practiceDjango:tags' %}">Cancel</a>
+  </form>
+</body>
+</html>
