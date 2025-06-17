@@ -131,7 +131,7 @@
     <div class="main">
       <h1>All Tasks</h1>
 
-      <a href="" class="button">+ Create New Task</a>
+      <a href="{% url 'practiceDjango:task_create' %}" class="button">+ Create New Task</a>
 
       <ul class="tasks">
         {% for task in task_list %}
