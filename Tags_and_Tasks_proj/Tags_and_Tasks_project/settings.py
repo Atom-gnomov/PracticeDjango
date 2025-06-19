@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-'practiceDjango',
+'Tags_and_Tasks_app',
 ]
 
 MIDDLEWARE = [
@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'Practice.urls'
+ROOT_URLCONF = 'Tags_and_Tasks_project.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Practice.wsgi.application'
+WSGI_APPLICATION = 'Tags_and_Tasks_project.wsgi.application'
 
 
 # Database

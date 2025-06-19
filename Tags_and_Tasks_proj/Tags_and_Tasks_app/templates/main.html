@@ -159,17 +159,17 @@
             <p class="actions">
               <a href="{% url 'practiceDjango:task-update' task.pk %}">Edit</a>
               <a href="{% url 'practiceDjango:task-delete' task.pk %}">Delete</a>
-              {% if not task.done %}
-                <form action="" method="post" style="display:inline;">
-                  {% csrf_token %}
-                  <button type="submit" class="complete-button">Mark Complete</button>
-                </form>
-              {% else %}
-                <form action="" method="post" style="display:inline;">
-                  {% csrf_token %}
-                  <button type="submit" class="undo-button">Undo Complete</button>
-                </form>
-              {% endif %}
+<form action="{% url 'practiceDjango:task-toggle' task.pk %}"
+      method="post" style="display:inline;">
+  {% csrf_token %}
+  <input type="hidden"
+         name="done"
+         value="{% if not task.done %}true{% else %}false{% endif %}">
+  <button type="submit"
+          class="{% if not task.done %}complete-button{% else %}undo-button{% endif %}">
+    {% if not task.done %}Mark Complete{% else %}Undo Complete{% endif %}
+  </button>
+</form>
             </p>
           </li>
         {% empty %}

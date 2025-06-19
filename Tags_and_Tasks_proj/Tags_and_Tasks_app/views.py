@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import TemplateView, ListView, CreateView, DeleteView, UpdateView
 
 from .models import Task, Tag
@@ -54,3 +55,11 @@ class TagUpdateView(UpdateView):
     fields = '__all__'
     template_name = 'tag_form.html'
     success_url = reverse_lazy('practiceDjango:tags')
+
+class TaskToggleView(View):
+    def post(self, request, pk):
+        task = get_object_or_404(Task, pk=pk)
+        new_state = request.POST.get('done') == 'true'
+        task.done = new_state
+        task.save()
+        return redirect('practiceDjango:index')
